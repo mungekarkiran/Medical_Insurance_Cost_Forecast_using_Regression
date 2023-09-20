@@ -1,0 +1,92 @@
+#navbar {
+  padding: 0 !important;
+}
+
+/* Small Devices */
+@media (min-width: 768px) and (max-width: 991px) {
+  #navbar ul {
+    margin-left: 50% !important;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 767px) {
+  #navbar {
+    width: 100%;
+  }
+
+  #navbar ul {
+    width: 100%;
+    margin-left: 0% !important;
+    margin-top: 10px;
+  }
+
+  #navbar li {
+    width: 50%;
+    margin: 0px auto 0 auto;
+  }
+
+  .personal-detail-heading {
+    margin-left: 50px !important;
+  }
+
+  #middleSection p {
+    text-align: center;
+  }
+
+  #middleSection > :first-child {
+    margin: 0px 0px;
+  }
+
+  #middleSection .col-md-10 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0px 0px 0px 10px;
+  }
+
+  .form-check-label {
+    font-size: 0.9em;
+  }
+
+  #innerCard2 .offset-md-2 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0px 0px 0px 40px;
+  }
+
+  iframe {
+    width: 300px;
+    height: 200px;
+  }
+
+  #playlist .card {
+    width: 300px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 20px;
+  }
+
+  #library-section {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .carousel-inner,
+  .carousel-inner img {
+    height: 300px;
+  }
+
+  #card-section .card {
+    margin-bottom: 170px;
+  }
+
+  .right-card {
+    margin-left: 0px !important;
+  }
+
+  .personal-details input[type="email"] {
+    width: 200px;
+  }
+}
+input[type="text"] {
+  text-align: center;
+}

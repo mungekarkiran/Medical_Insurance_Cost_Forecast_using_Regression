@@ -1,0 +1,42 @@
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/mylogin', methods=['POST'])
+def mylogin():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        level = request.form.get('level')
+        # print(email, password, level, '\n')
+
+        cursor.execute(f'''SELECT * FROM idpass WHERE email = "{email}" AND pass = "{password}" AND level = "{level}"; ''')
+        connection.commit()
+        time.sleep(1)
+        result = cursor.fetchall()
+        # print('result : ', result)
+
+        if len(result) > 0 and level == 'doctor' or level == 'other':
+            return render_template('home.html')
+        # elif len(result) > 0 and level == 'other':
+        #     return render_template('home.html')
+        else:
+            return '<b>Wrong email, password!</b>'
+        
+
+@app.route('/myreg', methods=['POST'])
+def myreg():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        level = request.form.get('level')
+        
+        try:
+            cursor.execute(f'''INSERT INTO idpass (email, pass, level) VALUES ("{email}", "{password}", "{level}"); ''')
+            connection.commit()
+            time.sleep(1)
+            return render_template('index.html')
+        except Exception as e:
+            print('Reg. Exception : ',e,'\n')
+            return render_template('index.html')
+

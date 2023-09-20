@@ -15,33 +15,26 @@ def index():
 @app.route('/getResult', methods=['POST'])
 def getResult():
     if request.method == 'POST':
+        # age, sex, bmi, smoker, children, region_northwest, region_southeast, region_southwest
+        age = int(request.form.get('age'))
+        sex = int(request.form.get('sex'))
+        bmi = float(request.form.get('bmi'))
+        smoker = int(request.form.get('smoker'))
+        children = int(request.form.get('children'))
+        region = request.form.get('children')
+        val = [age, sex, bmi, smoker, children]
         
-        age = float(request.form.get('age'))
-        blood_pressure = float(request.form.get('blood_pressure'))
-        specific_gravity = float(request.form.get('specific_gravity'))
-        albumin = float(request.form.get('albumin'))
-        sugar = float(request.form.get('sugar'))
-        red_blood_cells = float(request.form.get('red_blood_cells'))
-        pus_cell = float(request.form.get('pus_cell'))
-        pus_cell_clumps = float(request.form.get('pus_cell_clumps'))
-        bacteria = float(request.form.get('bacteria'))
-        blood_glucose_random = float(request.form.get('blood_glucose_random'))
-        blood_urea = float(request.form.get('blood_urea'))
-        serum_creatinine = float(request.form.get('serum_creatinine'))
-        sodium = float(request.form.get('sodium'))
-        potassium = float(request.form.get('potassium'))
-        haemoglobin = float(request.form.get('haemoglobin'))
-        packed_cell_volume = float(request.form.get('packed_cell_volume'))
-        white_blood_cell_count = float(request.form.get('white_blood_cell_count'))
-        red_blood_cell_count = float(request.form.get('red_blood_cell_count'))
-        hypertension = float(request.form.get('hypertension'))
-        diabetes_mellitus = float(request.form.get('diabetes_mellitus'))
-        coronary_artery_disease = float(request.form.get('coronary_artery_disease'))
-        appetite = float(request.form.get('appetite'))
-        peda_edema = float(request.form.get('peda_edema'))
-        aanemia = float(request.form.get('aanemia'))
-
-        input_list = np.array([age, blood_pressure, specific_gravity, albumin, sugar, red_blood_cells, pus_cell, pus_cell_clumps, bacteria, blood_glucose_random, blood_urea, serum_creatinine, sodium, potassium, haemoglobin, packed_cell_volume, white_blood_cell_count, red_blood_cell_count, hypertension, diabetes_mellitus,  coronary_artery_disease, appetite, peda_edema, aanemia])
+        if region == 'northwest':
+            val.extend([1, 0, 0])
+        elif region == 'southeast':
+            val.extend([0, 1, 0])
+        elif region == 'southwest':
+            val.extend([0, 0, 1])
+        else:
+            val.extend([0, 0, 0])
+        
+        input_list = np.array(val)
+        
         rf_model = pickle.load(open('models//rf_Classifier.pkl', 'rb')) 
         rf_pred = rf_model.predict([input_list])[0]
         print(rf_pred)

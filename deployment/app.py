@@ -1,8 +1,7 @@
 # lib's
 from flask import Flask, render_template, request, jsonify
+from medical_insurance_cost_forecast import predict
 import numpy as np
-import time
-import pickle
 
 # start app
 app = Flask(__name__)
@@ -33,18 +32,11 @@ def getResult():
         else:
             val.extend([0, 0, 0])
         
-        input_list = np.array(val)
+        input_val = np.array([val])
+        pred_val = predict(input_val)
         
-        rf_model = pickle.load(open('models//rf_Classifier.pkl', 'rb')) 
-        rf_pred = rf_model.predict([input_list])[0]
-        print(rf_pred)
-        if rf_pred == 0:
-            msg = 'Patient have a Chronic Kidney Disease and need to received medical treatment from a doctor.'
-        else:
-            msg = 'Patient not have a Chronic Kidney Disease.'
-        return render_template('home.html', msg = msg)
+        return render_template('home.html', msg = pred_val)
         
-
 if __name__ == '__main__':
     app.run(debug=True)
     # app.run(debug=False,host='0.0.0.0', port=5000)

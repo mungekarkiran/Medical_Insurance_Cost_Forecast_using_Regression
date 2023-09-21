@@ -40,3 +40,9 @@ def myreg():
             print('Reg. Exception : ',e,'\n')
             return render_template('index.html')
 
+-------------------------------------------------------------------
+
+if rf_pred == 0:
+            msg = 'Patient have a Chronic Kidney Disease and need to received medical treatment from a doctor.'
+        else:
+            msg = 'Patient not have a Chronic Kidney Disease.'

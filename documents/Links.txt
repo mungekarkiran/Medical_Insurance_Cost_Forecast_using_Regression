@@ -1,0 +1,8 @@
+https://www.kaggle.com/datasets/mirichoi0218/insurance/code
+
+https://www.kaggle.com/code/twyixuanli/analyzing-medical-costs
+
+https://www.kaggle.com/code/mitzbek/nsurance-predict-with-ml-regressor-models
+
+https://www.kaggle.com/datasets/gauravduttakiit/medical-insurance-cost?select=Train_Data.csv
+
